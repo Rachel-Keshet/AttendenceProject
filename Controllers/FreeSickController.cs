@@ -1,4 +1,8 @@
-﻿
+﻿using AttendenceP.Models;
+using AutoMapper;
+using Core;
+using Core.Dtos;
+//using Core.Dtos;
 using Core.entities;
 using Core.Interface;
 using Microsoft.AspNetCore.Http;
@@ -11,49 +15,56 @@ namespace AttendenceP.Controllers
     public class FreeSicksController : ControllerBase
     {
         private readonly IFreeSickService _FreeSickService;
+        private readonly IMapper _mapper;
 
-        public FreeSicksController(IFreeSickService FreeSickService)
+        public FreeSicksController(IFreeSickService FreeSickService, IMapper mapper)
         {
             _FreeSickService = FreeSickService;
+            _mapper = mapper;
         }
 
         // GET: api/<FreeSicksController>
         [HttpGet]
-        public ActionResult Get()
-        {
-            var FreeSicks = _FreeSickService.GetList();
-            return Ok(FreeSicks);
+        public async Task<ActionResult> GetAsync()
+        { 
+
+            var freeSick =await _FreeSickService.GetListAsync();
+            var listDto = _mapper.Map<IEnumerable<FreeSickDto>>(freeSick);
+            return Ok(listDto);
         }
 
         // GET api/<FreeSicksController>/5
         [HttpGet("{id}")]
-        public ActionResult Get(int id)
+        public async Task<ActionResult> GetAsync(int id)
         {
-            var FreeSick = _FreeSickService.GetById(id);
-            return Ok(FreeSick);
+            var freeSick = await _FreeSickService.GetByIdAsync(id);
+            var freeSickDto = _mapper.Map<FreeSickDto>(freeSick);
+            return Ok(freeSickDto);
         }
 
         // POST api/<FreeSicksController>
         [HttpPost]
-        public ActionResult Post([FromBody] FreeSick FreeSick)
+        public async Task<ActionResult> PostAsync([FromBody] FreeSickPostModel FreeSick)
         {
-            var newFreeSick = _FreeSickService.Add(FreeSick);
+            var FreeSickToAdd = new FreeSick { Id= FreeSick.Id, DayType = FreeSick.DayType, FreeDate = FreeSick.FreeDate, IsApproved= FreeSick.IsApproved, UserId= FreeSick.UserId };
+            var newFreeSick = await _FreeSickService.AddAsync(FreeSickToAdd);
             return Ok(newFreeSick);
         }
 
         // PUT api/<FreeSicksController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] FreeSick FreeSick)
+        public async Task<ActionResult> PutAsync(int id, [FromBody] FreeSickPostModel FreeSick)
         {
-            var updatedFreeSick = _FreeSickService.Update(FreeSick);
+            var FreeSickToUpdate = new FreeSick { Id = FreeSick.Id, DayType = FreeSick.DayType, FreeDate = FreeSick.FreeDate, IsApproved = FreeSick.IsApproved, UserId = FreeSick.UserId };
+            var updatedFreeSick = await _FreeSickService.UpdateAsync(FreeSickToUpdate);
             return Ok(updatedFreeSick);
         }
 
         // DELETE api/<FreeSicksController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            _FreeSickService.Delete(id);
+            await _FreeSickService.DeleteAsync(id);
             return Ok();
         }
     }

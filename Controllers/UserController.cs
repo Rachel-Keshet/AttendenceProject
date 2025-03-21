@@ -1,4 +1,8 @@
-﻿using Core.entities;
+﻿using AttendenceP.Models;
+using AutoMapper;
+using Core;
+using Core.Dtos;
+using Core.entities;
 using Core.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,49 +11,55 @@ using Microsoft.AspNetCore.Mvc;
 public class UsersController : ControllerBase
 {
     private readonly IUserService _userService;
+    private readonly IMapper _mapper;
 
-    public UsersController(IUserService userService)
+    public UsersController(IUserService userService, IMapper mapper)
     {
         _userService = userService;
+        _mapper = mapper;
     }
 
     // GET: api/<UsersController>
     [HttpGet]
-    public ActionResult Get()
+    public async Task<ActionResult> GetAsync()
     {
-        var users = _userService.GetList();
-        return Ok(users);
+        var users = await _userService.GetListAsync();
+        var listDto = _mapper.Map<IEnumerable<UserDto>>(users);
+        return Ok(listDto);
     }
 
     // GET api/<UsersController>/5
     [HttpGet("{id}")]
-    public ActionResult Get(int id)
+    public async Task<ActionResult> GetAsync(int id)
     {
-        var user = _userService.GetById(id);
-        return Ok(user);
+        var user =  await _userService.GetByIdAsync(id);
+        var userDto = _mapper.Map<UserDto>(user);
+        return Ok(userDto);
     }
 
     // POST api/<UsersController>
     [HttpPost]
-    public ActionResult Post([FromBody] User user)
+    public async Task<ActionResult> PostAsync([FromBody] UserPostModel user)
     {
-        var newUser = _userService.Add(user);
+        var userToAdd = new User { FirstName = user.FirstName, LastName = user.LastName, Email = user.Email, Password = user.Password, Role = user.Role};
+        var newUser =await _userService.AddAsync(userToAdd);
         return Ok(newUser);
     }
 
     // PUT api/<UsersController>/5
     [HttpPut("{id}")]
-    public ActionResult Put(int id, [FromBody] User user)
+    public async Task<ActionResult> PutAsync(int id, [FromBody] UserPostModel user)
     {
-        var updatedUser = _userService.Update(user);
+        var userToUpdate = new User { FirstName = user.FirstName, LastName = user.LastName, Email = user.Email, Password = user.Password, Role = user.Role };
+        var updatedUser = await _userService.UpdateAsync(userToUpdate);
         return Ok(updatedUser);
     }
 
     // DELETE api/<UsersController>/5
     [HttpDelete("{id}")]
-    public ActionResult Delete(int id)
+    public async Task<ActionResult> DeleteAsync(int id)
     {
-        _userService.Delete(id);
+       await _userService.DeleteAsync(id);
         return Ok();
     }
 }

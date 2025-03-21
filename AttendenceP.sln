@@ -5,11 +5,11 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttendenceP", "AttendenceP.csproj", "{BD1B2143-3A79-40F0-8D14-DA42A4CFEAC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "..\Core\Core.csproj", "{FE28D928-EF04-458A-9759-9AB3C816797F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "..\Core\Core.csproj", "{FE28D928-EF04-458A-9759-9AB3C816797F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "..\Data\Data.csproj", "{D8CA4607-89B3-4BB1-8949-72486BA8E98F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "..\Data\Data.csproj", "{D8CA4607-89B3-4BB1-8949-72486BA8E98F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "..\Service\Service.csproj", "{2B0AB0FE-D074-401F-84BC-46E99A273340}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "..\Service\Service.csproj", "{2B0AB0FE-D074-401F-84BC-46E99A273340}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

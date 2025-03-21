@@ -1,4 +1,8 @@
-﻿using Core.entities;
+﻿using AttendenceP.Models;
+using AutoMapper;
+using Core;
+using Core.Dtos;
+using Core.entities;
 using Core.Interface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,50 +13,56 @@ namespace AttendenceP.Controllers
     [ApiController]
     public class HoursController : ControllerBase
     {
-        private readonly IHourService _HourService;
+        private readonly IHourService _hourService;
+        private readonly IMapper _mapper;
 
-        public HoursController(IHourService HourService)
+        public HoursController(IHourService hourService, IMapper mapper)
         {
-            _HourService = HourService;
+            _hourService = hourService;
+            _mapper = mapper;
         }
 
         // GET: api/<HoursController>
         [HttpGet]
-        public ActionResult Get()
+        public async Task<ActionResult> GetAsync()
         {
-            var Hours = _HourService.GetList();
-            return Ok(Hours);
+            var listHours = await _hourService.GetListAsync();
+            var listDto = _mapper.Map<IEnumerable<HourDto>>(listHours);
+            return Ok(listDto);
         }
 
         // GET api/<HoursController>/5
         [HttpGet("{id}")]
-        public ActionResult Get(int UserId)
+        public async Task<ActionResult> GetAsync(int UserId)
         {
-            var Hour = _HourService.GetById(UserId);
-            return Ok(Hour);
+            var hour = await _hourService.GetByIdAsync(UserId);
+            var hourDto = _mapper.Map<HourDto>(hour);
+            return Ok(hourDto);
         }
 
         // POST api/<HoursController>
         [HttpPost]
-        public ActionResult Post([FromBody] Hour Hour)
+        public async Task<ActionResult> PostAsync([FromBody] HourPostModel hour)
         {
-            var newHour = _HourService.Add(Hour);
+            var hourToAdd = new Hour { Id = hour.Id, AttendDate = hour.AttendDate, StartTime = hour.StartTime, EndTime = hour.EndTime, UserId = hour.UserId };
+            var newHour = await _hourService.AddAsync(hourToAdd);
             return Ok(newHour);
         }
 
         // PUT api/<HoursController>/5
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Hour Hour)
+        public async Task<ActionResult> PutAsync(int id, [FromBody] HourPostModel hour)
         {
-            var updatedHour = _HourService.Update(Hour);
+            var hourToUpdate= new Hour { Id = hour.Id, AttendDate = hour.AttendDate, StartTime = hour.StartTime, EndTime = hour.EndTime, UserId = hour.UserId };
+            var updatedHour =await _hourService.UpdateAsync(hourToUpdate);
             return Ok(updatedHour);
         }
 
         // DELETE api/<HoursController>/5
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> DeleteAsync(int id)
         {
-            _HourService.Delete(id);
+            await _hourService.DeleteAsync(id);
             return Ok();
         }
     }
