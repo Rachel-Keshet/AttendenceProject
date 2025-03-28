@@ -92,24 +92,5 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<ShabbatMiddleware>();
-
-// Log every request to API
-app.Use(async (context, next) =>
-{
-    var logger = LogManager.GetCurrentClassLogger();
-    logger.Info($"Incoming request: {context.Request.Method} {context.Request.Path}");
-
-    try
-    {
-        await next.Invoke();  // Process the request
-    }
-    catch (Exception ex)
-    {
-        // Log exception if it occurs
-        logger.Error(ex, "An error occurred while processing the request.");
-        throw;
-    }
-});
-
 app.MapControllers();
 app.Run();
