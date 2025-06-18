@@ -85,19 +85,6 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
-      },
-      "Core/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v7.0",
-        "dependencies": {
-          "AutoMapper": "13.0.1"
-        },
-        "compile": {
-          "bin/placeholder/Core.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Core.dll": {}
-        }
       }
     }
   },
@@ -212,16 +199,11 @@
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt"
       ]
-    },
-    "Core/1.0.0": {
-      "type": "project",
-      "path": "../Core/Core.csproj",
-      "msbuildProject": "../Core/Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "Core >= 1.0.0"
+      "AutoMapper >= 13.0.1"
     ]
   },
   "packageFolders": {
@@ -231,11 +213,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\RK\\Documents\\.net\\Attendence.Service\\Service.csproj",
-      "projectName": "Service",
-      "projectPath": "C:\\Users\\RK\\Documents\\.net\\Attendence.Service\\Service.csproj",
+      "projectUniqueName": "C:\\Users\\RK\\Documents\\.net\\Core\\Core.csproj",
+      "projectName": "Core",
+      "projectPath": "C:\\Users\\RK\\Documents\\.net\\Core\\Core.csproj",
       "packagesPath": "C:\\Users\\RK\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\RK\\Documents\\.net\\Attendence.Service\\obj\\",
+      "outputPath": "C:\\Users\\RK\\Documents\\.net\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -256,14 +238,7 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {
-            "C:\\Users\\RK\\Documents\\.net\\Attendence.Core\\Core.csproj": {
-              "projectPath": "C:\\Users\\RK\\Documents\\.net\\Attendence.Core\\Core.csproj"
-            },
-            "C:\\Users\\RK\\Documents\\.net\\Core\\Core.csproj": {
-              "projectPath": "C:\\Users\\RK\\Documents\\.net\\Core\\Core.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -275,6 +250,12 @@
     "frameworks": {
       "net7.0": {
         "targetAlias": "net7.0",
+        "dependencies": {
+          "AutoMapper": {
+            "target": "Package",
+            "version": "[13.0.1, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",

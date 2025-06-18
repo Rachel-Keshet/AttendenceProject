@@ -6,10 +6,20 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Attendence.Core\Core.csproj", "{CCB64339-3404-4E2A-A443-65397D2F89FC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Attendence.Data\Data.csproj", "{7A5CB9F2-17C0-4544-B582-32511D7F6EC7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CCB64339-3404-4E2A-A443-65397D2F89FC} = {CCB64339-3404-4E2A-A443-65397D2F89FC}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Attendence.Service\Service.csproj", "{DA000D6D-1489-4D41-97CB-1DBD06988B1C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7A5CB9F2-17C0-4544-B582-32511D7F6EC7} = {7A5CB9F2-17C0-4544-B582-32511D7F6EC7}
+		{CCB64339-3404-4E2A-A443-65397D2F89FC} = {CCB64339-3404-4E2A-A443-65397D2F89FC}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AttendenceP", "AttendenceP.API\AttendenceP.csproj", "{3613F99C-8B69-403B-9AF1-88E14DF19824}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DA000D6D-1489-4D41-97CB-1DBD06988B1C} = {DA000D6D-1489-4D41-97CB-1DBD06988B1C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

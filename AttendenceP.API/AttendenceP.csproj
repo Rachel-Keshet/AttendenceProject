@@ -20,9 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj" />
-    <ProjectReference Include="..\Data\Data.csproj" />
-    <ProjectReference Include="..\Service\Service.csproj" />
+    <ProjectReference Include="..\Attendence.Core\Core.csproj" />
+    <ProjectReference Include="..\Attendence.Data\Data.csproj" />
+    <ProjectReference Include="..\Attendence.Service\Service.csproj" />
+   
   </ItemGroup>
 
 </Project>

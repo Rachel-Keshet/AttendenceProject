@@ -3049,6 +3049,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "C:\\Users\\RK\\Documents\\.net\\Attendence.Core\\Core.csproj": {
+              "projectPath": "C:\\Users\\RK\\Documents\\.net\\Attendence.Core\\Core.csproj"
+            },
             "C:\\Users\\RK\\Documents\\.net\\Core\\Core.csproj": {
               "projectPath": "C:\\Users\\RK\\Documents\\.net\\Core\\Core.csproj"
             }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QqPXkvuhJ8rQzsu9RvcyfCG+fi8La3KZMV8niSr0TTT9riCRfEi09d01wE1Et9/wiagupY9R9WNnxMCnO133Pw==",
+  "dgSpecHash": "YqJBxq2CcVzBiarYGVgHrdHOKc7ICRGT74H4XcU8Y6ssRXil6BDEP/WLOHhgcxyByIbarGrGMAu5mf1umJtgrw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\RK\\Documents\\.net\\Attendence.Service\\Service.csproj",
+  "projectFilePath": "C:\\Users\\RK\\Documents\\.net\\Core\\Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\RK\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\RK\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
